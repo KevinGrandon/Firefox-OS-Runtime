@@ -3,13 +3,17 @@ Firefox-OS-Runtime
 
 A Firefox plugin which has several API mocks for rapid development on FFOS.
 
+Requirements
+-------------
+- cfx addon: https://addons.mozilla.org/en-US/developers/docs/sdk/1.13/dev-guide/tutorials/getting-started-with-cfx.html
+- Firefox nightly and gaia: (See: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Using_Gaia_in_Firefox)
+
 Usage
 -------------
-
-- Run a gaia profile in Firefox (See: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Using_Gaia_in_Firefox)
-- Launch the plugin from: https://builder.addons.mozilla.org/package/175585/latest/
-- Click the 'eye' icon at the top left.
-- Navigate to: system.gaiamobile.org:8080 to see the system application.
+- Run the plugin using cfx. The --profiledir option should map to your gaia profile. In my case gaia and this repo are at the same level, so this works for me on a mac:
+```
+cfx run -b /Applications/FirefoxNightly.app/Contents/MacOS/firefox --profiledir="../gaia/profile" --binary-args 'http://system.gaiamobile.org:8080'
+```
 
 
 Developers
