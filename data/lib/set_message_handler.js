@@ -1,3 +1,5 @@
-FFOS_RUNTIME.makeNavigatorShim('mozSetMessageHandler', function(name, callback) {
-
-})
+!function() {
+    FFOS_RUNTIME.makeNavigatorShim('mozSetMessageHandler', function(name, callback) {
+    
+    })
+}()
