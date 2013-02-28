@@ -42,9 +42,6 @@
 				  	payload: eventDetail
 				  }, "http://system.gaiamobile.org:8080");
 			} else {
-				var evtObject = new CustomEvent("omgbbq")
-				unsafeWindow.dispatchEvent(evtObject)
-
 				var evtObject = new CustomEvent("mozChromeEvent", eventDetail)
 				unsafeWindow.dispatchEvent(evtObject)
 			}

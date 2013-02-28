@@ -1,4 +1,24 @@
 FFOS_RUNTIME = {
+
+	/**
+	 * This is so we have a single entry-point for the APP window
+	 * This is needed as the interface to unsafeWindow may be changing soon
+	 */
+	getAppWindow: function(callback) {
+		callback(unsafeWindow)
+	},
+
+	/**
+	 * Proxies console.log statements to the app window
+	 */
+	debug: function() {
+		var args = Array.slice(arguments)
+
+		this.getAppWindow(function(win) {
+			win.console.log.apply(win.console, args)
+		})
+	},
+
 	makeNavigatorShim: function(property, definition) {
 		try {
 			unsafeWindow.navigator.__defineGetter__(property, function(){
@@ -9,12 +29,16 @@ FFOS_RUNTIME = {
 		}
 	}
 }
+var debug = FFOS_RUNTIME.d
 
 /**
- * Listen to messages
+ * Special System App message behavior
  */
- // If we're on the homescreen, post to the system app
-if (/system.gaiamobile.org/.test(location.href)) {
+ if (/system.gaiamobile.org/.test(location.href)) {
+
+ 	/**
+ 	 * Handle messages for mozChromeEvent from iframes
+ 	 */
 	window.addEventListener('message', function(e) {
 		if (e.data.action == 'dispatchMessage') {
 			var evtObject = new CustomEvent("mozChromeEvent", e.data.payload)
@@ -22,6 +46,45 @@ if (/system.gaiamobile.org/.test(location.href)) {
 		}
 	})
 }
+
+/**
+ * Handle keypresses
+ */
+window.addEventListener('keypress', function(e) {
+
+	if (e.keyCode == 36) {
+		var targetFrame
+		if (/system.gaiamobile.org/.test(location.href)) {
+			targetFrame = window
+		} else {
+			targetFrame = parent
+		}
+
+		var eventDetail = {
+			detail: {
+				type: 'home-button-press'
+			}
+		}
+
+		targetFrame.postMessage({
+			action: 'dispatchMessage',
+			payload: eventDetail
+		}, "http://system.gaiamobile.org:8080")
+
+		setTimeout(function() {
+			var eventDetail = {
+				detail: {
+					type: 'home-button-release'
+				}
+			}
+
+			targetFrame.postMessage({
+				action: 'dispatchMessage',
+				payload: eventDetail
+			}, "http://system.gaiamobile.org:8080")
+		}, 200)
+	}
+})
 
 /**
  * Proxies mozSystem XMLHttpRequest
