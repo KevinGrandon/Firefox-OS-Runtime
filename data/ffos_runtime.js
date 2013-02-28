@@ -27,6 +27,30 @@ FFOS_RUNTIME = {
 		} catch(e) {
 			alert('Error intializing shim (' + property + '): ' + e)
 		}
+	},
+
+	/**
+	 * Sends an event to the system frame
+	 * This is frame independent, and can be triggered from the system app itself
+	 * @param {Object} The e.detail object passed to the event
+	 */
+	sendFrameEvent: function(data) {
+		var targetFrame
+		if (/system.gaiamobile.org/.test(location.href)) {
+			targetFrame = window
+		} else {
+			targetFrame = parent
+		}
+
+		var eventDetail = {
+			detail: data
+		}
+
+		targetFrame.postMessage({
+			action: 'dispatchMessage',
+			payload: eventDetail
+		}, "http://system.gaiamobile.org:8080")
+
 	}
 }
 var debug = FFOS_RUNTIME.debug
@@ -50,41 +74,24 @@ var debug = FFOS_RUNTIME.debug
 }
 
 /**
- * Handle keypresses
+ * Handle keydown special cases
  */
-window.addEventListener('keypress', function(e) {
-
+window.addEventListener('keydown', function(e) {
 	if (e.keyCode == 36) {
-		var targetFrame
-		if (/system.gaiamobile.org/.test(location.href)) {
-			targetFrame = window
-		} else {
-			targetFrame = parent
-		}
+		FFOS_RUNTIME.sendFrameEvent({
+			type: 'home-button-press'
+		})
+	}
+})
 
-		var eventDetail = {
-			detail: {
-				type: 'home-button-press'
-			}
-		}
-
-		targetFrame.postMessage({
-			action: 'dispatchMessage',
-			payload: eventDetail
-		}, "http://system.gaiamobile.org:8080")
-
-		setTimeout(function() {
-			var eventDetail = {
-				detail: {
-					type: 'home-button-release'
-				}
-			}
-
-			targetFrame.postMessage({
-				action: 'dispatchMessage',
-				payload: eventDetail
-			}, "http://system.gaiamobile.org:8080")
-		}, 200)
+/**
+ * Handle keyup special cases
+ */
+window.addEventListener('keyup', function(e) {
+	if (e.keyCode == 36) {
+		FFOS_RUNTIME.sendFrameEvent({
+			type: 'home-button-release'
+		})
 	}
 })
 

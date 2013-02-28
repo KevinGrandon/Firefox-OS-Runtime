@@ -27,24 +27,13 @@
 			}
 
 			var eventDetail = {
-				detail: {
-					type: 'webapps-launch',
-					manifestURL: this.manifestURL,
-					url: this.origin + launchPath,
-					isActivity: false
-				}
+				type: 'webapps-launch',
+				manifestURL: this.manifestURL,
+				url: this.origin + launchPath,
+				isActivity: false
 			}
 
-			// If we're on the homescreen, post to the system app
-			if (/homescreen.gaiamobile.org/.test(location.href)) {
-				  parent.postMessage({
-				  	action: 'dispatchMessage',
-				  	payload: eventDetail
-				  }, "http://system.gaiamobile.org:8080");
-			} else {
-				var evtObject = new CustomEvent("mozChromeEvent", eventDetail)
-				unsafeWindow.dispatchEvent(evtObject)
-			}
+			FFOS_RUNTIME.sendFrameEvent(eventDetail)
 		}
 	}
 	
