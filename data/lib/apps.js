@@ -3,23 +3,20 @@
 	FFOS_RUNTIME.getAppWindow(function(win) {
 		win.sessionStorage.setItem('webapps-registry-ready', true)
 	})
-	
-	function cloneManifest(manifest) {
-		return JSON.parse(JSON.stringify(manifest))
-	}
-	
-	function MockAppInstance(manifestUrl, manifest) {
-	
-		var origin = manifestUrl.match(/\/\/(.*?):/)[1]
-	
-		this.manifestURL = manifestUrl
-		this.origin = 'http://' + origin + ':8080'
-		this.manifest = manifest
+
+	function MockAppInstance(app) {
+	unsafeWindow.console.log('Got mock app')
+		this.app = app
+
+		for (var i in app) {
+			if (i == 'launch') { continue }
+			this[i] = app[i]
+		}
 	}
 	
 	MockAppInstance.prototype = {
 		launch: function(entrypoint) {
-			console.log('MockAppInstance.launch', entrypoint)
+			console.log('MockAppInstance.launch')
 	
 			var launchPath
 			if (entrypoint && this.manifest.entry_points[entrypoint]) {
@@ -38,53 +35,39 @@
 			FFOS_RUNTIME.sendFrameEvent(eventDetail)
 		}
 	}
-	
+
+	var mozAppsRef = unsafeWindow.navigator.mozApps
 	FFOS_RUNTIME.makeNavigatorShim('mozApps', {
 		mgmt: {
 			oninstall: function() {
 				console.log('mgmt.oninstall called');
+				mozAppsRef.mgmt.oninstall.apply(this, arguments)
 			},
 			onuninstall: function() {
 				console.log('mgmt.onuninstall called')
+				mozAppsRef.mgmt.onuninstall.apply(this, arguments)
 			},
 			getAll: function() {
-				console.log('mgmt.getAll called')
+
 				var scope = {}
-				setTimeout(function() {
-	
+
+				mozAppsRef.mgmt.getAll().onsuccess = function(e) {
+					var apps = e.target.result
+
 					var allApps = []
-					for (var i in FFOS_RUNTIME_MANIFESTS) {
-	
-						// Handle multiple entry points
-						if (FFOS_RUNTIME_MANIFESTS[i].entry_points) {
-							for (var entry in FFOS_RUNTIME_MANIFESTS[i].entry_points) {
-	
-								var manifest = cloneManifest(FFOS_RUNTIME_MANIFESTS[i])
-								var entryPoint = FFOS_RUNTIME_MANIFESTS[i].entry_points[entry]
-	
-								for (var override in entryPoint) {
-									manifest[override] = entryPoint[override]
-								}
-	
-								 allApps.push(
-									new MockAppInstance(i, manifest)
-								)
-							}
-						} else {
-							// Make a clone of the manifest
-							var manifest = cloneManifest(FFOS_RUNTIME_MANIFESTS[i])
-							allApps.push(
-								new MockAppInstance(i, manifest)
-							)
-						}
+					for (var i =0, app; app = apps[i]; i++) {
+						allApps.push(new MockAppInstance(app))
 					}
-	
-					scope.onsuccess({
-						target: {
-							result: allApps
-						}
+
+					setTimeout(function() {
+						scope.onsuccess({
+							target: {
+								result: allApps
+							}
+						})
 					})
-				})
+				}
+
 				return scope
 			}
 		}
