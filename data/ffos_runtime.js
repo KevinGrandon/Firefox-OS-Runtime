@@ -35,16 +35,21 @@ FFOS_RUNTIME = {
 	 * @param {Object} The e.detail object passed to the event
 	 */
 	sendFrameEvent: function(data) {
-		var targetFrame
-		if (/system.gaiamobile.org/.test(location.href)) {
-			targetFrame = window
-		} else {
-			targetFrame = parent
-		}
 
 		var eventDetail = {
 			detail: data
 		}
+
+		var targetFrame
+		if (/system.gaiamobile.org/.test(location.href)) {
+			targetFrame = window
+			var evtObject = new CustomEvent("mozChromeEvent", eventDetail)
+			unsafeWindow.dispatchEvent(evtObject)
+
+			return
+		}
+
+		targetFrame = parent
 
 		targetFrame.postMessage({
 			action: 'dispatchMessage',
@@ -64,6 +69,7 @@ var debug = FFOS_RUNTIME.debug
  	 * Handle messages for mozChromeEvent from iframes
  	 */
 	window.addEventListener('message', function(e) {
+
 		if (e.data.action == 'dispatchMessage') {
 			FFOS_RUNTIME.getAppWindow(function(win) {
 				var evtObject = new CustomEvent("mozChromeEvent", e.data.payload)
