@@ -1,6 +1,8 @@
 !function() {
 	// Set session storage so system/js/application.js fetches all apps
-	unsafeWindow.sessionStorage.setItem('webapps-registry-ready', true)
+	FFOS_RUNTIME.getAppWindow(function(win) {
+		win.sessionStorage.setItem('webapps-registry-ready', true)
+	})
 	
 	function cloneManifest(manifest) {
 		return JSON.parse(JSON.stringify(manifest))
@@ -17,7 +19,7 @@
 	
 	MockAppInstance.prototype = {
 		launch: function(entrypoint) {
-			unsafeWindow.console.log('MockAppInstance.launch', entrypoint)
+			console.log('MockAppInstance.launch', entrypoint)
 	
 			var launchPath
 			if (entrypoint && this.manifest.entry_points[entrypoint]) {
