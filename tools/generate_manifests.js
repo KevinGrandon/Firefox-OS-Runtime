@@ -28,12 +28,12 @@ for (var i = 0, app; app = apps[i]; i++) {
 	var manifestFile = fs.readFileSync(manifestPath, 'utf-8')
 	var manifestObj = JSON.parse(manifestFile)
 
-	// Override icons until we figure out how to proxy
+	/*
+	// We no longer need to override icons as we have systemXHR permissions
 	if (manifestObj.icons && manifestObj.icons['60']) {
 		manifestObj.icons['60'] = defaultIcon
 	}
 
-	/*
 	if (manifestObj.entry_points) {
 		for (var key in manifestObj.entry_points) {
 			if (manifestObj.entry_points[key].icons && manifestObj.entry_points[key].icons['60']) {
