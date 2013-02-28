@@ -7,7 +7,7 @@
  */
 
 var fs = require('fs')
-var root = __dirname + '/apps'
+var root = __dirname + '/../../gaia/apps'
 var appIcons = []
 var manifestContent = 'var FFOS_RUNTIME_MANIFESTS = {}' + "\n\n"
 
@@ -33,13 +33,15 @@ for (var i = 0, app; app = apps[i]; i++) {
 		manifestObj.icons['60'] = defaultIcon
 	}
 
+	/*
 	if (manifestObj.entry_points) {
-		for (var i in manifestObj.entry_points) {
-			if (manifestObj.entry_points[i].icons && manifestObj.entry_points[i].icons['60']) {
-				manifestObj.entry_points[i].icons['60'] = defaultIcon
+		for (var key in manifestObj.entry_points) {
+			if (manifestObj.entry_points[key].icons && manifestObj.entry_points[key].icons['60']) {
+				manifestObj.entry_points[key].icons['60'] = defaultIcon
 			}
 		}
 	}
+	*/
 	manifestFile = JSON.stringify(manifestObj)
 
 	manifestContent += 'FFOS_RUNTIME_MANIFESTS[\'http://' + app + '.gaiamobile.org:8080/manifest.webapp\'] = ' + manifestFile + "\n\n"
