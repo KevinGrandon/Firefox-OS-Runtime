@@ -5,7 +5,6 @@
 	})
 
 	function MockAppInstance(app) {
-	unsafeWindow.console.log('Got mock app')
 		this.app = app
 
 		for (var i in app) {
