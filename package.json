@@ -1,1 +1,14 @@
-{"license": "", "description": "", "contributors": [], "author": "kgrandon", "url": "", "dependencies": ["api-utils", "addon-kit"], "version": "1.02.rev307", "lib": "lib", "fullName": "FFOS Runtime", "main": "main", "id": "jid0-OqHKimDbI90pQvEPBLDP8JnfDvA", "name": "ffos-runtime"}
+{
+	"license": "",
+	"description": "",
+	"contributors": [],
+	"author": "Kevin Grandon",
+	"url": "",
+	"dependencies": ["api-utils", "addon-kit"],
+	"version": "1.03",
+	"lib": "lib",
+	"fullName": "Firefox OS Runtime",
+	"main": "main",
+	"id": "jid0-OqHKimDbI90pQvEPBLDP8JnfDvA",
+	"name": "ffos-runtime"
+}
