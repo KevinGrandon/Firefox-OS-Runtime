@@ -29,7 +29,7 @@ FFOS_RUNTIME = {
 		}
 	}
 }
-var debug = FFOS_RUNTIME.d
+var debug = FFOS_RUNTIME.debug
 
 /**
  * Special System App message behavior
@@ -41,8 +41,10 @@ var debug = FFOS_RUNTIME.d
  	 */
 	window.addEventListener('message', function(e) {
 		if (e.data.action == 'dispatchMessage') {
-			var evtObject = new CustomEvent("mozChromeEvent", e.data.payload)
-			unsafeWindow.dispatchEvent(evtObject)
+			FFOS_RUNTIME.getAppWindow(function(win) {
+				var evtObject = new CustomEvent("mozChromeEvent", e.data.payload)
+				win.dispatchEvent(evtObject)			
+			})
 		}
 	})
 }
@@ -139,17 +141,19 @@ unsafeWindow.XMLHttpRequest = function(config) {
 }
 */
 
-/**
- * Adds a nextPaintListener 
- * Proxies to setTimeout
- **/
-unsafeWindow.HTMLIFrameElement.prototype.addNextPaintListener = function(callback) {
-	setTimeout(callback, 100)
-}
+FFOS_RUNTIME.getAppWindow(function(win) {
+	/**
+	 * Adds a nextPaintListener 
+	 * Proxies to setTimeout
+	 **/
+	win.HTMLIFrameElement.prototype.addNextPaintListener = function(callback) {
+		setTimeout(callback, 100)
+	}
 
-/**
- * Remove the nextPaintListener 
- **/
-unsafeWindow.HTMLIFrameElement.prototype.removeNextPaintListener = function(callback) {
-	
-}
+	/**
+	 * Remove the nextPaintListener 
+	 **/
+	win.HTMLIFrameElement.prototype.removeNextPaintListener = function(callback) {
+		
+	}
+})
