@@ -2,6 +2,14 @@
 	// Set session storage so system/js/application.js fetches all apps
 	FFOS_RUNTIME.getAppWindow(function(win) {
 		win.sessionStorage.setItem('webapps-registry-ready', true)
+
+		// FM radio has a hidden body attribute for some reason?
+		// Remove it so we can at least use the UI
+		if (/fm.gaiamobile.org/.test(location.href)) {
+			setTimeout(function() {
+				win.document.body.removeAttribute('hidden')
+			}, 500)
+		}
 	})
 
 	function MockAppInstance(app) {

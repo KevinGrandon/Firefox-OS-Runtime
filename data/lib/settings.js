@@ -2,7 +2,8 @@
 
 	var defaultSettings = {
 		'homescreen.manifestURL': 'http://homescreen.gaiamobile.org:8080/manifest.webapp',
-		'ftu.manifestURL': 'http://communications.gaiamobile.org:8080/manifest.webapp'
+		'ftu.manifestURL': 'http://communications.gaiamobile.org:8080/manifest.webapp',
+		'phone.ring.keypad': true
 	}
 
 	function MockSettingsRequest() {
