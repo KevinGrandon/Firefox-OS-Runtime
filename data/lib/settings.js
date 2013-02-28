@@ -7,7 +7,24 @@
 		'lockscreen.unlock-sound.enabled': false,
  		'mail.sent-sound.enabled': true,
  		'message.sent-sound.enabled': true,
- 		'phone.ring.keypad': true
+ 		'phone.ring.keypad': true,
+ 		"keyboard.layouts.english": true,
+		 "keyboard.layouts.dvorak": false,
+		 "keyboard.layouts.otherlatins": false,
+		 "keyboard.layouts.cyrillic": false,
+		 "keyboard.layouts.arabic": false,
+		 "keyboard.layouts.hebrew": false,
+		 "keyboard.layouts.zhuyin": false,
+		 "keyboard.layouts.pinyin": false,
+		 "keyboard.layouts.greek": false,
+		 "keyboard.layouts.japanese": false,
+		 "keyboard.layouts.portuguese": false,
+		 "keyboard.layouts.spanish": false,
+		 "keyboard.vibration": false,
+		 "keyboard.clicksound": false,
+		 "keyboard.wordsuggestion": false,
+		 "keyboard.current": "en",
+		 "language.current": "en-US"
 	}
 
 	function MockSettingsRequest() {
@@ -34,7 +51,7 @@
 			var mockSettingsRequest = new MockSettingsRequest(prop)
 
 			unsafeWindow.setTimeout(function() {
-				console.log('Checking for :', prop, mockSettingsRequest.onsuccess)
+				console.log('Checking for :', prop, defaultSettings[prop], mockSettingsRequest.onsuccess)
 
 				// Disable FTU popup for now
 				if (prop == 'ftu.manifestURL') {
