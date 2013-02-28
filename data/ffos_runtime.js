@@ -79,28 +79,6 @@ var debug = FFOS_RUNTIME.debug
 	})
 }
 
-/**
- * Handle keydown special cases
- */
-window.addEventListener('keydown', function(e) {
-	if (e.keyCode == 36) {
-		FFOS_RUNTIME.sendFrameEvent({
-			type: 'home-button-press'
-		})
-	}
-})
-
-/**
- * Handle keyup special cases
- */
-window.addEventListener('keyup', function(e) {
-	if (e.keyCode == 36) {
-		FFOS_RUNTIME.sendFrameEvent({
-			type: 'home-button-release'
-		})
-	}
-})
-
 FFOS_RUNTIME.getAppWindow(function(win) {
 	/**
 	 * Adds a nextPaintListener 
