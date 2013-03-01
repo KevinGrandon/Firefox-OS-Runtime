@@ -5,6 +5,7 @@ A Firefox plugin which has several API mocks for rapid development on FFOS. This
 
 * Proper permissions setup for WebAPI access
 * Message proxying for chrome events (App launches, etc)
+* Proxies mozCameras to mozGetUserMedia. Not all functionality is there yet.
 * Stubs for settings and other things that might need them
 
 
@@ -21,11 +22,16 @@ Or you can find the last released version here: https://addons.mozilla.org/en-US
 Alternative method is to follow the developer method below:
 
 
+Usage
+-------------
+* Press the 'Home' key to mimic the hardward home button. Mac users press fn + left arrow.
+* You can use 'right-click' to mimic long taps on icons. We can clean this up in the future, but I wanted to avoid gaia changes for now.
+
 Plugin Developers
 -------------
 We use cfx for plugin development. See here for additional details: https://addons.mozilla.org/en-US/developers/docs/sdk/1.13/dev-guide/tutorials/getting-started-with-cfx.html
 
-Usage
+Starting the environment
 -------------
 - Run the plugin using cfx. The --profiledir option should map to your gaia profile. In my case gaia and this repo are at the same level, so this works for me on a mac:
 ```
