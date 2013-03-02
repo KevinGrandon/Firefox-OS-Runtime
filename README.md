@@ -7,6 +7,7 @@ A Firefox plugin which has several API mocks for rapid development on FFOS. This
 * Message proxying for chrome events (App launches, etc)
 * Proxies mozCameras to mozGetUserMedia. Not all functionality is there yet.
 * Stubs for settings and other things that might need them
+* Implements hardware button shims for the home button
 
 
 FirefoxOS Developers
@@ -15,11 +16,9 @@ You'll want to have Firefox nightly, along with a gaia checkout: (See: https://d
 
 You can add the plugin to your Firefox Nightly installation.
 
-We recommend our current version, here: https://github.com/KevinGrandon/Firefox-OS-Runtime/raw/master/ffos-runtime.xpi
+Download the current version here: https://github.com/KevinGrandon/Firefox-OS-Runtime/raw/master/ffos-runtime.xpi
 
-Or you can find the last released version here: https://addons.mozilla.org/en-US/firefox/addon/firefox-os-runtime/
-
-Alternative method is to follow the developer method below:
+After downloading, simply drag and drop the plugin on your Firefox Nightly and you will be prompted to install. An alternative method is to follow the developer method below.
 
 
 Usage
