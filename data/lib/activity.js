@@ -109,4 +109,7 @@
 		})
 	}
 
+    FFOS_RUNTIME.makeNavigatorShim('mozHasPendingMessage', function() {
+        return false
+    })
 }()
