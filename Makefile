@@ -1,4 +1,4 @@
 # Lint files
 lint:
-	@gjslint --nojsdoc -r data/
-	@gjslint --nojsdoc -r lib/
+	@python ./linter/gjslint.py --nojsdoc -r data/
+	@python ./linter/gjslint.py --nojsdoc -r lib/
