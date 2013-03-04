@@ -54,7 +54,7 @@
         this.freeSpace = function() {
             var proxy = {};
             setTimeout(function() {
-                proxy.result = 10000;
+                proxy.result = 10000000;
                 proxy.onsuccess();
             });
             return proxy;
