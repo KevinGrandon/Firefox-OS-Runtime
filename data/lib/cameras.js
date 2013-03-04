@@ -1,7 +1,6 @@
 !function() {
 
 	var CameraManager = {
-
 		// The camera stream
 		stream: false,
 
@@ -24,10 +23,10 @@
 		getCamera: function(options, callback) {
 			console.log('mozCamera.getCamera')
 
-			navigator.mozGetUserMedia({video: true}, 
+			navigator.mozGetUserMedia({video: true},
 				function(stream) {
-				 	this.stream = stream
-				 	callback(this)
+                    this.stream = stream
+                    callback(this)
 				}.bind(this),
 				function() {
 					console.log('Could not initialize camera.')
@@ -54,8 +53,17 @@
 			console.log('mozCamera.autoFocus')
 		},
 
-		takePicture: function() {
+		takePicture: function(config, onSuccess, onError) {
 			console.log('mozCamera.takePicture')
+            var cnvs = document.createElement('canvas');
+
+            cnvs.width = config.pictureSize.width
+            cnvs.height = config.pictureSize.height
+            var ctx = cnvs.getContext('2d')
+            ctx.drawImage(unsafeWindow.document.querySelector('video'), 0, 0, cnvs.width, cnvs.height)
+            cnvs.toBlob(function(blob) {
+                onSuccess(blob)
+            }, 'image/jpeg')
 		},
 
 		release: function() {
