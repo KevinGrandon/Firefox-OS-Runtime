@@ -28,11 +28,11 @@
 
         // interface DeviceStorage
         this.add = function(blob) {
-            console.log("DeviceStorage.add");
+            console.log('DeviceStorage.add');
         };
 
         this.addNamed = function(blob, name) {
-            console.log("DeviceStorage.addNamed");
+            console.log('DeviceStorage.addNamed');
         };
 
         this.get = function(name) {
@@ -61,15 +61,15 @@
         };
 
         this.getEditable = function(name) {
-            console.log("DeviceStorage.getEditable");
+            console.log('DeviceStorage.getEditable');
         };
 
         this.delete = function(name) {
-            console.log("DeviceStorage.delete");
+            console.log('DeviceStorage.delete');
         };
 
         this.enumerate = function() {
-            console.log("DeviceStorage.enumerate");
+            console.log('DeviceStorage.enumerate');
             var cursor = new (function() {
                 var self = this;
 
@@ -85,7 +85,7 @@
                     var ix = ++this.ix;
                     var blob = blobs[ix];
                     console.log('DeviceStorage.continue', ix);
-                    if(!blob) return; // do we have to call something?
+                    if (!blob) return; // do we have to call something?
 
                     // decode the base64 blob to a normal Blob thingy
                     var decoded = new Blob([convertDataURIToBinary(blob)], { type: 'image/png' });
@@ -121,7 +121,7 @@
     var deviceStorages = {};
 
     var getDeviceStorage = function(mediaType) {
-        if(!deviceStorages[mediaType]) {
+        if (!deviceStorages[mediaType]) {
             deviceStorages[mediaType] = new DeviceStorage(mediaType);
         }
 

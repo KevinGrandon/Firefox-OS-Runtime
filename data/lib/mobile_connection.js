@@ -9,10 +9,10 @@
     },
     cardState: 'absent',
     addEventListener: function() {
-      console.log('mozMobileConnection.addEventListener')
+      console.log('mozMobileConnection.addEventListener');
     },
     removeEventListener: function() {
-      console.log('mozMobileConnection.removeEventListener')
+      console.log('mozMobileConnection.removeEventListener');
     }
-  })
-}()
+  });
+}();

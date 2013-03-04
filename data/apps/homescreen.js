@@ -8,14 +8,14 @@
 
     function addListener(el) {
       el.addEventListener('contextmenu', function(e) {
-        e.preventDefault()
-      })
+        e.preventDefault();
+      });
     }
 
-    var allLists = unsafeWindow.document.querySelectorAll('ol')
+    var allLists = unsafeWindow.document.querySelectorAll('ol');
 
     for (var i = 0, ilen = allLists.length; i < ilen; i++) {
-      addListener(allLists[i])
+      addListener(allLists[i]);
     }
-  }, 1000)
-}()
+  }, 1000);
+}();

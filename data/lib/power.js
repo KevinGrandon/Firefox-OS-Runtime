@@ -4,7 +4,7 @@
     screenBrightness: 1,
     screenEnabled: true,
     addWakeLockListener: function(callback) {
-      console.log('power addWakeLockListener')
+      console.log('power addWakeLockListener');
     }
-  })
-}()
+  });
+}();
