@@ -16,7 +16,7 @@ You'll want to have Firefox nightly, along with a gaia checkout: (See: https://d
 
 You can add the plugin to your Firefox Nightly installation.
 
-Download the current version here: https://github.com/KevinGrandon/Firefox-OS-Runtime/raw/master/ffos-runtime.xpi
+Download the current version here: https://github.com/KevinGrandon/Firefox-OS-Runtime/raw/master/firefox-os-runtime.xpi
 
 After downloading, simply drag and drop the plugin on your Firefox Nightly and you will be prompted to install. An alternative method is to follow the developer method below.
 
