@@ -5,10 +5,10 @@
 	"author": "Kevin Grandon",
 	"url": "",
 	"dependencies": ["api-utils", "addon-kit"],
-	"version": "1.08",
+	"version": "1.10",
 	"lib": "lib",
 	"fullName": "Firefox OS Runtime",
 	"main": "main",
-	"id": "jid0-OqHKimDbI90pQvEPBLDP8JnfDvA",
-	"name": "ffos-runtime"
+	"id": "firefox-os-runtime",
+	"name": "firefox-os-runtime"
 }
