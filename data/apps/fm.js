@@ -1,11 +1,11 @@
 !function() {
 
-	if ( !(/fm.gaiamobile.org/.test(location.href)) ) { return }
+  if ( !(/fm.gaiamobile.org/.test(location.href)) ) { return }
 
-	// FM radio has a hidden body attribute for some reason?
-	// Remove it so we can at least use the UI
-	// TODO: Figure out why this is needed
-	setTimeout(function() {
-		unsafeWindow.document.body.removeAttribute('hidden')
-	}, 500)
+  // FM radio has a hidden body attribute for some reason?
+  // Remove it so we can at least use the UI
+  // TODO: Figure out why this is needed
+  setTimeout(function() {
+    unsafeWindow.document.body.removeAttribute('hidden')
+  }, 500)
 }()

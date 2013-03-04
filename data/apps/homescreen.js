@@ -3,19 +3,19 @@
  */
 !function() {
 
-	// Hack to disable context menus so we can move icons on the homescreen
-	setTimeout(function() {
+  // Hack to disable context menus so we can move icons on the homescreen
+  setTimeout(function() {
 
-		function addListener(el) {
-			el.addEventListener('contextmenu', function(e) {
-				e.preventDefault()
-			})
-		}
+    function addListener(el) {
+      el.addEventListener('contextmenu', function(e) {
+        e.preventDefault()
+      })
+    }
 
-		var allLists = unsafeWindow.document.querySelectorAll('ol')
+    var allLists = unsafeWindow.document.querySelectorAll('ol')
 
-		for (var i = 0, ilen = allLists.length; i < ilen; i++) {
-			addListener(allLists[i])
-		}
-	}, 1000)
+    for (var i = 0, ilen = allLists.length; i < ilen; i++) {
+      addListener(allLists[i])
+    }
+  }, 1000)
 }()
