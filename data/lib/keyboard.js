@@ -11,5 +11,5 @@
     onfocuschange: function() {
       console.log('keyboard onfocus change');
     }
-  });
+  }, true);
 }();

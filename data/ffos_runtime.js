@@ -19,11 +19,24 @@ FFOS_RUNTIME = {
     });
   },
 
-  makeNavigatorShim: function(property, definition) {
+  /**
+   * Creates a navigator shim on the unsafeWindow
+   * @param {String} property name.
+   * @param {Object} property definition.
+   * @param {Boolean} if true, makes a navigator setter for this object. Useful for testing.
+   */
+  makeNavigatorShim: function(property, definition, makeSetter) {
     try {
       unsafeWindow.navigator.__defineGetter__(property, function() {
         return definition;
       });
+
+      if (makeSetter) {
+        unsafeWindow.navigator.__defineSetter__(property, function(prop) {
+          definition = prop;
+        });
+      }
+
     } catch (e) {
       alert('Error intializing shim (' + property + '): ' + e);
     }

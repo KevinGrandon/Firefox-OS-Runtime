@@ -14,5 +14,5 @@
     removeEventListener: function() {
       console.log('mozMobileConnection.removeEventListener');
     }
-  });
+  }, true);
 }();

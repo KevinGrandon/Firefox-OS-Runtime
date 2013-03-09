@@ -83,5 +83,5 @@
       console.log('creating lock!', arguments);
       return new MockSettingsLock();
     }
-  });
+  }, true);
 }();

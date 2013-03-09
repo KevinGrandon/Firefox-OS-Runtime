@@ -5,7 +5,7 @@
 	"author": "Kevin Grandon",
 	"url": "",
 	"dependencies": ["api-utils", "addon-kit"],
-	"version": "1.11",
+	"version": "1.12",
 	"lib": "lib",
 	"fullName": "Firefox OS Runtime",
 	"main": "main",
