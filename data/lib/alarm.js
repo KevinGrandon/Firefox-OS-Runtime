@@ -36,7 +36,6 @@
 
   // do the override
   FFOS_RUNTIME.makeNavigatorShim('mozSetMessageHandler', function(type, callback) {
-    console.log('IN CAL CB')
     if (type === 'alarm') {
       messageHandler = callback;
     } else if (realMsgHandler) {
