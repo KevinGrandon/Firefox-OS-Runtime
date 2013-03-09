@@ -19,5 +19,5 @@
     getNetworks: function() {
       console.log('wifi getNetworks');
     }
-  });
+  }, true);
 }();
