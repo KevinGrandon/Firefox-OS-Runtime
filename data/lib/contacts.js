@@ -28,8 +28,7 @@
                 'carrier': 'TEL'
             }],
             'category': [],
-            'note': ['Note 1'],
-            'photo': []
+            'note': ['Note 1']
         }, {
             'id': '2',
             'updated': new Date(),
@@ -56,8 +55,7 @@
                 'carrier': 'TEL'
             }],
             'category': [],
-            'note': ['Note 1'],
-            'photo': []
+            'note': ['Note 1']
         }, {
             'id': '3',
             'updated': new Date(),
@@ -84,8 +82,7 @@
                 'carrier': 'TEL'
             }],
             'category': [],
-            'note': ['Note 1'],
-            'photo': ['']
+            'note': ['Note 1']
         }];
     }
 
