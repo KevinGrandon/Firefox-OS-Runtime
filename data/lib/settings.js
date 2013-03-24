@@ -76,8 +76,8 @@
   };
 
   FFOS_RUNTIME.makeNavigatorShim('mozSettings', {
-    addObserver: function() {
-      console.log('adding observer!', arguments);
+    addObserver: function(setting, cb) {
+      console.log('adding observer!', setting);
     },
     createLock: function() {
       console.log('creating lock!', arguments);
