@@ -37,6 +37,10 @@
 
   var mozAppsRef = unsafeWindow.navigator.mozApps;
   FFOS_RUNTIME.makeNavigatorShim('mozApps', {
+    getSelf: function() {
+      console.log('mozApps.getSelf');
+      return mozAppsRef.getSelf.apply(this, arguments);
+    },
     mgmt: {
       oninstall: function() {
         console.log('mgmt.oninstall called');
