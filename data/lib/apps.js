@@ -39,7 +39,21 @@
   FFOS_RUNTIME.makeNavigatorShim('mozApps', {
     getSelf: function() {
       console.log('mozApps.getSelf');
-      return mozAppsRef.getSelf.apply(this, arguments);
+      var scope = {};
+
+      // getSelf isn't currently working, so construct a fake manifest for now.
+      setTimeout(function() {
+        var app = unsafeWindow.location.hostname.match(/^([a-zA-Z0-9]*)\./)[1];
+        scope.onsuccess({
+          target: {
+            result: {
+              installOrigin: 'http://' + app + '.gaiamobile.org:8080'
+            }
+          }
+        });
+      });
+
+      return scope;
     },
     mgmt: {
       oninstall: function() {
