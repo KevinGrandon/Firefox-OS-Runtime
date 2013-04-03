@@ -23,7 +23,7 @@ After downloading, simply drag and drop the plugin on your Firefox Nightly and y
 
 Usage
 -------------
-* Press the 'Home' key to mimic the hardward home button. Mac users press fn + left arrow.
+* Press the 'Home' key to mimic the hardware home button. Mac users press fn + left arrow.
 * You can use 'right-click' to mimic long taps on icons. We can clean this up in the future, but I wanted to avoid gaia changes for now.
 
 Plugin Developers
