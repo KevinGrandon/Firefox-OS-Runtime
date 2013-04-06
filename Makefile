@@ -1,4 +1,5 @@
-# Starts the plugin using CFX
+# Starts the plugin using the profile in the current directory
+# You can generate this profile with 'make build'
 firefox:
 	/Applications/FirefoxNightly.app/Contents/MacOS/firefox -profile $(CURDIR)/profile http://system.gaiamobile.org:8080
 
