@@ -39,5 +39,5 @@ cfx run -b /Applications/FirefoxNightly.app/Contents/MacOS/firefox --profiledir=
 
 A shortcut is enabled for this command:
 ```
-./start.sh
+make start
 ```

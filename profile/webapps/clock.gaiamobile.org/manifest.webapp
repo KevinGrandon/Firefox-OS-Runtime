@@ -1,0 +1,44 @@
+{
+  "name": "Clock",
+  "description": "Gaia Clock",
+  "type": "certified",
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "The Gaia Team",
+    "url": "https://github.com/mozilla-b2g/gaia"
+  },
+  "permissions": {
+    "storage":{},
+    "alarms":{},
+    "settings":{ "access": "readwrite" },
+    "attention":{},
+    "audio-channel-alarm":{}
+  },
+  "locales": {
+    "ar": {
+      "name": "الساعة",
+      "description": "Gaia الساعة"
+    },
+    "en-US": {
+      "name": "Clock",
+      "description": "Gaia Clock"
+    },
+    "fr": {
+      "name": "Horloge",
+      "description": "Horloge Gaia"
+    },
+    "zh-TW": {
+      "name": "時鐘",
+      "description": "Gaia 時鐘"
+    }
+  },
+  "default_locale": "en-US",
+  "icons": {
+    "120": "/style/icons/Clock.png",
+    "60": "/style/icons/60/Clock.png"
+  },
+  "orientation": "portrait-primary",
+  "messages": [
+     { "alarm": "/index.html" }
+  ]
+}
