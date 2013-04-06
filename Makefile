@@ -13,10 +13,11 @@ lint:
 
 # Creates our local profile from the gaia directory in the same directory
 build:
+	rm -rf profile/
 	cd ../gaia; rm -rf profile
 	cd ../gaia; DEBUG=1 make
 	cd ../gaia; cp -R profile ../Firefox-OS-Runtime/.
-	rm -rf profile/extensions/httpd
-	rm profile/extensions/httpd@gaiamobile.org
+	#rm -rf profile/extensions/httpd
+	#rm profile/extensions/httpd@gaiamobile.org
 	cfx xpi
 	cp firefox-os-runtime.xpi profile/extensions/firefox-os-runtime@jetpack.xpi
